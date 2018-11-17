@@ -38,6 +38,7 @@ fe.layout.width = 1024
 fe.layout.height = 768
 
 local main_scale = 1.7;
+local y_offset = 100;
 
 //fe.do_nut("scripts/star.nut");
 
@@ -46,10 +47,10 @@ const MHEIGHT = 170;
 const SNAPBG_ALPHA = 200;
 
 local x_origin = 1024/2-400/2;
-local y_origin = 768/2-300/2 - 100;
+local y_origin = 768/2-300/2 - 100 + y_offset;
 
 //fe.add_image( "retro.mp4", 0, 0, 1024, 768 );
-fe.add_image("stars.mp4", 0, 0, 1024, 768);
+fe.add_image("starsArcade.mp4", 0, 0, 1024, 768);
 
 
 
@@ -146,7 +147,7 @@ class Satallite extends ConveyorSlot
 		m_obj.width = MWIDTH * scale * main_scale;
 		m_obj.height = MHEIGHT * scale * main_scale;
 		m_obj.x = new_x - m_obj.width / 2 + (1024 - 800) / 2;
-		m_obj.y = get_y( new_x ) - m_obj.height / 2 + 100;
+		m_obj.y = get_y( new_x ) - m_obj.height / 2 + 100 + y_offset;
 
 		set_bright( ( scale > 1.0 ) ? 255 : scale * 255, m_obj );
 	}
@@ -371,4 +372,4 @@ function orbit_transition( ttype, var, ttime )
 	return false;
 }
 
-fe.add_text(my_index, 0, 0, 10, 100);
+//fe.add_image("arcade.mp4", 0, 0, 1024, 768);
