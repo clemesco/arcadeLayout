@@ -37,7 +37,7 @@ local my_config = fe.get_config();
 fe.layout.width = 1024
 fe.layout.height = 768
 
-local main_scale = 1.2;
+local main_scale = 1.5;
 local y_offset = 85;
 local snap_scale = 3.5;
 
