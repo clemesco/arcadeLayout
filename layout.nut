@@ -38,7 +38,11 @@ fe.layout.width = 1024
 fe.layout.height = 768
 
 local main_scale = 1.7;
-local y_offset = 100;
+local y_offset = 85;
+local snap_scale = 3.5;
+
+local snap_x = 100*snap_scale;
+local snap_y = snap_x*3/4;
 
 //fe.do_nut("scripts/star.nut");
 
@@ -46,8 +50,11 @@ const MWIDTH = 280;
 const MHEIGHT = 170;
 const SNAPBG_ALPHA = 200;
 
-local x_origin = 1024/2-400/2;
-local y_origin = 768/2-300/2 - 100 + y_offset;
+local x_origin = fe.layout.width/2-snap_x/2;
+local y_origin = fe.layout.height/2-snap_y/2 - 100 + y_offset;
+
+//local x_origin_snap = ;
+//local y_origin_snap = ;
 
 //fe.add_image( "retro.mp4", 0, 0, 1024, 768 );
 fe.add_image("starsArcade.mp4", 0, 0, 1024, 768);
@@ -168,7 +175,7 @@ if ( my_config[ "static_effect" ] == "Yes" )
 {
 	snapbg = fe.add_image(
 		"static.mp4",
-		x_origin, y_origin, 400, 300 );
+		x_origin, y_origin, snap_x, snap_y );
 
 	snapbg.set_rgb( 150, 150, 150 );
 	snapbg.alpha = SNAPBG_ALPHA;
@@ -181,7 +188,7 @@ else
 	temp.bg_alpha = SNAPBG_ALPHA;
 }
 
-local snap = fe.add_artwork( "snap", x_origin, y_origin, 400, 300 );
+local snap = fe.add_artwork("snap", x_origin, y_origin, snap_x, snap_y);
 
 snap.trigger = Transition.EndNavigation;
  
@@ -193,7 +200,7 @@ overlay_lb.set_sel_rgb( 0, 0, 0 );
 overlay_lb.set_selbg_rgb( 255, 255, 255 );
 overlay_lb.visible=false;
 
-local frame = fe.add_image( "frame.png", x_origin-10, y_origin-10, 420, 320 );
+local frame = fe.add_image( "frame.png", x_origin-7, y_origin-7, snap_x+15, snap_y+15);
 
 //
 // Initialize misc text
